@@ -15,7 +15,7 @@ inputs:
   repository:
     description: 'Name of the repository under review'
     required: false
-    default: {{github.event.repository.name}}
+    default: ${{github.event.repository.name}}
   pr-number:
     description: 'The pull request number'
     required: false
