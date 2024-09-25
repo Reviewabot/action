@@ -1,5 +1,5 @@
 name: 'Reviewabot'
-description: 'Reviewabot automates the process of creating a pull request review. It uses generative AI to create a review based on your instructions.'
+description: 'Reviewabot will review your pull requests using generative AI.'
 
 inputs:
   open-api-key:
