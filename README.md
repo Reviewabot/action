@@ -15,13 +15,13 @@ Since you cannot review your own code, I suggest that you create a new GitHub us
 
 ## Inputs
 
-| Input Name       | Description                                                                 | Required | Default                          |
-|------------------|-----------------------------------------------------------------------------|----------|----------------------------------|
-| `open-api-key`   | Your OpenAPI Key                                                            | true     |                                  |
-| `reviewer-pat`   | The reviewer's Private Access Token with permission to read source and write reviews | true     |                                  |
-| `owner`          | Name of the owner of the repository under review                            | false    | `${{github.repository_owner}}`   |
-| `repository`     | Name of the repository under review                                         | false    | `${{github.event.repository.name}}` |
-| `pr-number`      | The pull request number                                                     | false    | `${{github.event.number}}`       |
+| Input Name       | Description                                                                          | Required | Default                             |
+|------------------|--------------------------------------------------------------------------------------|----------|-------------------------------------|
+| `open-api-key`   | Your OpenAPI Key                                                                     | true     |                                     |
+| `reviewer-pat`   | The reviewer's Private Access Token with permission to read source and write reviews | true     |                                     |
+| `owner`          | Name of the owner of the repository under review                                     | false    | `${{github.repository_owner}}`      |
+| `repository`     | Name of the repository under review                                                  | false    | `${{github.event.repository.name}}` |
+| `pr-number`      | The pull request number                                                              | false    | `${{github.event.number}}`          |
 
 ## Example Usage
 
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Run Reviewabot
-      uses: simon-k/reviewabot-action@v1
+      uses: reviewabot/action@v1
       with:
         open-api-key: ${{ secrets.OPENAPI_KEY }}
         reviewer-pat: ${{ secrets.REVIEWER_GITHUB_PAT }}
@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
     - name: Run Reviewabot
-      uses: simon-k/reviewabot-action@v1
+      uses: reviewabot/action@v1
       with:
         open-api-key: ${{ secrets.OPENAPI_KEY }}
         reviewer-pat: ${{ secrets.REVIEWER_GITHUB_PAT }}
