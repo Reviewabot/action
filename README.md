@@ -4,7 +4,7 @@
 
 Reviewabot automates the process of creating a pull request review. It uses generative AI to create a review based on your instructions.
 
-[Read more aboiut Reviewabot in this article on medium](https://medium.com/@simon.c.kofod/reviewabot-your-ai-pull-request-reviewer-cd11b46aeca2)
+Read more aboiut Reviewabot in [this article on medium](https://medium.com/@simon.c.kofod/reviewabot-your-ai-pull-request-reviewer-cd11b46aeca2), or have a look at the [Reviewabot source code](https://github.com/simon-k/reviewabot).
 
 Here is an example of a generated PR Review.
 
