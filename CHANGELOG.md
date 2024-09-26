@@ -15,17 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CONTRIBUTING.md
 
 ### Changed
-
 - Updated README.md with a banner and a link to the Reviewabot source repository.
 
 ## [2.0.1] - 2024-09-25
 
 ### Changed
-
 - Improve the instructions in the README.md
 
 ## [2.0.0] - 2024-09-25
 
 ### Added
-
 - Initial release to GitHub marketplace
