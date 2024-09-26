@@ -1,6 +1,14 @@
+![Reviewabot Banner](docs/images/reviewabot-banner.png)
+
 # Reviewabot Action
 
 Reviewabot automates the process of creating a pull request review. It uses generative AI to create a review based on your instructions.
+
+[Read more aboiut Reviewabot in this article on medium](https://medium.com/@simon.c.kofod/reviewabot-your-ai-pull-request-reviewer-cd11b46aeca2)
+
+Here is an example of a generated PR Review.
+
+![Reviewabot Banner](docs/images/review-example.png)
 
 ## Requirements
 ### OpenAI API Key
@@ -65,4 +73,27 @@ jobs:
       with:
         open-api-key: ${{ secrets.OPENAPI_KEY }}
         reviewer-pat: ${{ secrets.REVIEWER_GITHUB_PAT }}
+```
+
+Here is an example where the owner, repository, and pull request number are specified. The review runs every time a PR is opened.
+
+```yaml
+name: Review Pull Request
+
+on:
+  pull_request:
+    types: [opened]
+    
+jobs:
+  review:
+    runs-on: ubuntu-latest 
+    steps:
+    - name: Run Reviewabot
+      uses: simon-k/reviewabot-action@v1
+      with:
+        open-api-key: ${{ secrets.OPENAPI_KEY }}
+        reviewer-pat: ${{ secrets.REVIEWER_GITHUB_PAT }}
+        owner: 'my-username'
+        repository: 'my-repo'
+        pr-number: '1'
 ```
