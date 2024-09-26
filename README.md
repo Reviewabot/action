@@ -14,22 +14,24 @@ Here is an example of a generated PR Review.
 ### OpenAI API Key
 The current version of Reviewabot requires an OpenAI API key to generate reviews. You can create an API key by visiting the [OpenAI website](https://platform.openai.com/account/api-keys).
 
-In the future Reviewabot will also support Azure OpenAI and other LLM providers.
+___Place the API Key in a repository secret named `OPENAPI_KEY`.___
 
 ### GitHub Personal Access Token
-A review must be created by a GitHub user, so you will need a GitHub Personal Access Token (PAT) with permission to read source and write reviews.
+A review must be created by a GitHub user, so you will need a GitHub Personal Access Token (PAT) with permission to read source and write reviews from a GitHub User Account that has been added as a contributor to the repository.
 
 Since you cannot review your own code, I suggest that you create a new GitHub user account for the reviewer.
 
+___Place the PAT of the reviewer in a repository secret named `REVIEWER_GITHUB_PAT`.___
+
 ## Inputs
 
-| Input Name       | Description                                                                 | Required | Default                          |
-|------------------|-----------------------------------------------------------------------------|----------|----------------------------------|
-| `open-api-key`   | Your OpenAPI Key                                                            | true     |                                  |
-| `reviewer-pat`   | The reviewer's Private Access Token with permission to read source and write reviews | true     |                                  |
-| `owner`          | Name of the owner of the repository under review                            | false    | `${{github.repository_owner}}`   |
-| `repository`     | Name of the repository under review                                         | false    | `${{github.event.repository.name}}` |
-| `pr-number`      | The pull request number                                                     | false    | `${{github.event.number}}`       |
+| Input Name       | Description                                                                          | Required | Default                             |
+|------------------|--------------------------------------------------------------------------------------|----------|-------------------------------------|
+| `open-api-key`   | Your OpenAPI Key                                                                     | true     |                                     |
+| `reviewer-pat`   | The reviewer's Private Access Token with permission to read source and write reviews | true     |                                     |
+| `owner`          | Name of the owner of the repository under review                                     | false    | `${{github.repository_owner}}`      |
+| `repository`     | Name of the repository under review                                                  | false    | `${{github.event.repository.name}}` |
+| `pr-number`      | The pull request number                                                              | false    | `${{github.event.number}}`          |
 
 ## Example Usage
 
@@ -46,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Run Reviewabot
-      uses: simon-k/reviewabot-action@v1
+      uses: Reviewabot/action@v2.0.0
       with:
         open-api-key: ${{ secrets.OPENAPI_KEY }}
         reviewer-pat: ${{ secrets.REVIEWER_GITHUB_PAT }}
@@ -69,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
     - name: Run Reviewabot
-      uses: simon-k/reviewabot-action@v1
+      uses: Reviewabot/action@v2.0.0
       with:
         open-api-key: ${{ secrets.OPENAPI_KEY }}
         reviewer-pat: ${{ secrets.REVIEWER_GITHUB_PAT }}
