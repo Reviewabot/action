@@ -10,7 +10,16 @@ inputs:
     required: true
   open-ai-key:
     description: 'Your OpenAI Key'
-    required: true    
+    required: false
+    default: ''
+  azure-open-ai-key:
+    description: 'Your Azure OpenAI Key'
+    required: false
+    default: ''
+  azure-open-ai-endpoint:
+    description: 'Your Azure OpenAI Endpoint'
+    required: false
+    default: ''
   owner:
     description: 'Name of the owner of the repository under review'
     required: false
@@ -27,16 +36,27 @@ inputs:
 runs:
   using: "composite"
   steps:
+  - name: Check for required keys
+    if: ${{ inputs.open-ai-key == '' && inputs.azure-open-ai-key == '' }}
+    shell: bash
+    run: echo "You need to specify either open-ai-key or azure-open-ai-key." && exit 1
+    
   - name: Setup .NET
     uses: actions/setup-dotnet@v4
     with:
       dotnet-version: 8.0.x
 
   - name: Clone Reviewabot Repository
-    run: git clone --depth 1 --branch v2.0.0 https://github.com/simon-k/reviewabot.git
     shell: bash
+    run: git clone --depth 1 --branch v2.0.0 https://github.com/simon-k/reviewabot.git
     
-  - name: Run Reviewabot
+  - name: Run Reviewabot with OpenAI
+    id: run_openai
+    if: ${{ inputs.open-ai-key != '' }}
     shell: bash
     run: dotnet run --project reviewabot/src/Reviewabot/Reviewabot.Console/ --Owner=${{inputs.owner}} --Repo=${{inputs.repository}} --PrNumber=${{inputs.pr-number}} --OpenAiKey=${{inputs.open-ai-key}} --githubpat=${{inputs.reviewer-pat}}
-  
+
+  - name: Run Reviewabot with Azure OpenAI
+    if: ${{ steps.run_openai.outcome != 'success' && inputs.azure-open-ai-key != '' }}
+    shell: bash
+    run: dotnet run --project reviewabot/src/Reviewabot/Reviewabot.Console/ --Owner=${{inputs.owner}} --Repo=${{inputs.repository}} --PrNumber=${{inputs.pr-number}} --AzureOpenAiKey=${{inputs.azure-open-ai-key}} --AzureOpenAiEndpoint=${{inputs.azure-open-ai-endpoint}} --githubpat=${{inputs.reviewer-pat}}
