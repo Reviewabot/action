@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Run Reviewabot
-      uses: Reviewabot/action@v2.0.0
+      uses: Reviewabot/action@v3.0.0
       with:
         open-ai-key: ${{ secrets.OPENAI_KEY }}
         reviewer-pat: ${{ secrets.REVIEWER_GITHUB_PAT }}
@@ -86,7 +86,7 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
     - name: Run Reviewabot
-      uses: Reviewabot/action@v2.0.0
+      uses: Reviewabot/action@v3.0.0
       with:
         open-ai-key: ${{ secrets.OPENAI_KEY }}
         reviewer-pat: ${{ secrets.REVIEWER_GITHUB_PAT }}
@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
     - name: Run Reviewabot
-      uses: Reviewabot/action@v2.0.0
+      uses: Reviewabot/action@v3.0.0
       with:
         open-ai-key: ${{ secrets.OPENAI_KEY }}
         reviewer-pat: ${{ secrets.REVIEWER_GITHUB_PAT }}
